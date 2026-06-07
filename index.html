@@ -1,203 +1,118 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM Demo — Kompra Inside</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-
-        /* Simple spinner animation */
-        .loader {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #dc2626;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body class="bg-gray-50 h-screen flex overflow-hidden">
-
-<!-- Mock CRM Sidebar -->
-<aside class="w-64 bg-slate-900 text-slate-300 flex flex-col">
-    <div class="h-16 flex items-center px-6 border-b border-slate-700">
-        <span class="text-xl font-bold text-white tracking-wide">SmartCRM</span>
+<!-- PAGE 2: CLIENTS (Demo Table) -->
+<div id="content-clients" class="content-section p-8 flex-1 overflow-y-auto hidden">
+    <div class="flex justify-between items-end mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">База контрагентов</h2>
+        <span class="text-sm text-green-600 font-medium flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    Синхронизация Kompra: Активна
+                </span>
     </div>
-    <nav class="flex-1 py-4 space-y-1">
-        <a href="#" id="tab-deals" class="nav-item px-6 py-3 flex items-center text-white bg-slate-800 border-l-4 border-blue-500">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            Сделки
-        </a>
-        <a href="#" id="tab-clients" class="nav-item px-6 py-3 flex items-center hover:bg-slate-800 hover:text-white border-l-4 border-transparent transition">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-            Клиенты
-        </a>
-        <a href="#" id="tab-analytics" class="nav-item px-6 py-3 flex items-center hover:bg-slate-800 hover:text-white border-l-4 border-transparent transition">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-            Аналитика
-        </a>
-    </nav>
-</aside>
 
-<!-- Main Content Area -->
-<main class="flex-1 flex flex-col">
-    <!-- Top Header -->
-    <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8">
-        <h1 id="page-title" class="text-xl font-semibold text-gray-800">Создание новой сделки</h1>
-        <div class="flex items-center gap-4">
-            <span class="text-sm text-gray-500">Менеджер: Иванов А.</span>
-            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold">ИА</div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+        <table class="w-full text-left border-collapse">
+            <thead>
+            <tr class="bg-slate-50 text-gray-500 text-sm border-b border-gray-200">
+                <th class="p-4 font-medium">Компания</th>
+                <th class="p-4 font-medium">БИН</th>
+                <th class="p-4 font-medium">Kompra Score</th>
+                <th class="p-4 font-medium">Статус в CRM</th>
+                <th class="p-4 font-medium">Последнее обновление</th>
+            </tr>
+            </thead>
+            <tbody class="text-sm">
+            <!-- Safe Client -->
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition">
+                <td class="p-4 font-medium text-gray-900">ТОО "Альфа Строй"</td>
+                <td class="p-4 text-gray-500">112233445566</td>
+                <td class="p-4">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+                                    <span class="w-2 h-2 rounded-full bg-green-500"></span> 95 / 100
+                                </span>
+                </td>
+                <td class="p-4"><span class="text-green-600 font-medium">Активен</span></td>
+                <td class="p-4 text-gray-400">Сегодня, 08:00 (Авто)</td>
+            </tr>
+            <!-- High Risk Client -->
+            <tr class="border-b border-gray-100 bg-red-50 hover:bg-red-100 transition">
+                <td class="p-4 font-bold text-red-900">ТОО "Global Trade"</td>
+                <td class="p-4 text-red-500">998877665544</td>
+                <td class="p-4">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-200 text-red-800 border border-red-300">
+                                    <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span> 12 / 100
+                                </span>
+                </td>
+                <td class="p-4"><span class="text-red-700 font-bold">Блок сделок</span></td>
+                <td class="p-4 text-red-500 font-medium">Вчера, 23:45 (Алерт!)</td>
+            </tr>
+            <!-- Warning Client -->
+            <tr class="border-b border-gray-100 hover:bg-gray-50 transition">
+                <td class="p-4 font-medium text-gray-900">ИП "Смирнов"</td>
+                <td class="p-4 text-gray-500">554433221100</td>
+                <td class="p-4">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800">
+                                    <span class="w-2 h-2 rounded-full bg-yellow-500"></span> 68 / 100
+                                </span>
+                </td>
+                <td class="p-4"><span class="text-yellow-600 font-medium">Контроль СБ</span></td>
+                <td class="p-4 text-gray-400">Сегодня, 08:00 (Авто)</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- PAGE 3: ANALYTICS (Demo Dashboard) -->
+<div id="content-analytics" class="content-section p-8 flex-1 overflow-y-auto hidden">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Дашборд рисков (Kompra Inside)</h2>
+
+    <!-- Top Stats Grid -->
+    <div class="grid grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-blue-500">
+            <p class="text-sm font-medium text-gray-500 mb-1">Мониторинг контрагентов</p>
+            <p class="text-3xl font-bold text-gray-900">1,248</p>
+            <p class="text-xs text-blue-600 mt-2 font-medium">Ежедневная авто-проверка</p>
         </div>
-    </header>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-red-500">
+            <p class="text-sm font-medium text-gray-500 mb-1">Заблокировано сделок</p>
+            <p class="text-3xl font-bold text-gray-900">34</p>
+            <p class="text-xs text-red-600 mt-2 font-medium">Kompra Score < 30</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 border-l-4 border-l-green-500">
+            <p class="text-sm font-medium text-gray-500 mb-1">Предотвращено потерь</p>
+            <p class="text-3xl font-bold text-gray-900">42.5 млн ₸</p>
+            <p class="text-xs text-gray-500 mt-2 font-medium">Сумма заблокированных договоров</p>
+        </div>
+    </div>
 
-    <!-- PAGE 1: DEALS (The Main Demo) -->
-    <div id="content-deals" class="content-section p-8 flex-1 overflow-y-auto block">
-        <div class="max-w-3xl bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 class="text-lg font-semibold text-gray-800 mb-6 border-b pb-2">Данные контрагента</h2>
-
-            <div class="space-y-5">
-                <div class="grid grid-cols-2 gap-4">
+    <!-- Bottom Section -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-bold text-gray-800 mb-4">Журнал критических алертов</h3>
+        <ul class="space-y-3">
+            <li class="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100">
+                <div class="flex items-center gap-4">
+                            <span class="bg-red-500 p-2 rounded-full">
+                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            </span>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Сумма сделки (KZT)</label>
-                        <input type="text" value="15 000 000" class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-50 text-gray-500" disabled>
+                        <p class="text-sm font-bold text-gray-900">ТОО "Global Trade"</p>
+                        <p class="text-xs text-red-700 mt-0.5">Новая судебная задолженность (2.1 млн ₸). Статус изменен на "Заблокирован".</p>
                     </div>
+                </div>
+                <span class="text-xs font-medium text-gray-500 bg-white px-2 py-1 rounded border">Вчера, 23:45</span>
+            </li>
+            <li class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg border border-yellow-100">
+                <div class="flex items-center gap-4">
+                            <span class="bg-yellow-500 p-2 rounded-full">
+                                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            </span>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Предмет договора</label>
-                        <input type="text" value="Поставка оборудования" class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-50 text-gray-500" disabled>
+                        <p class="text-sm font-bold text-gray-900">ИП "Смирнов"</p>
+                        <p class="text-xs text-yellow-800 mt-0.5">Смена первого руководителя. Требуется обновление данных.</p>
                     </div>
                 </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">БИН компании поставщика <span class="text-red-500">*</span></label>
-                    <div class="flex gap-3">
-                        <input type="text" id="binInput" placeholder="Введите 12 цифр БИН" class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" maxlength="12">
-                        <button id="searchBtn" class="bg-slate-900 hover:bg-slate-800 text-white px-6 py-2 rounded-lg font-medium transition flex items-center gap-2">
-                            Проверить через Kompra
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Loading State -->
-                <div id="loaderState" class="hidden py-6 flex flex-col items-center justify-center bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                    <div class="loader mb-3"></div>
-                    <p class="text-sm text-gray-500">Оценка риска по 130 параметрам...</p>
-                </div>
-
-                <!-- Kompra Inside Widget -->
-                <div id="kompraWidget" class="hidden mt-6 rounded-xl overflow-hidden border border-red-500 shadow-sm">
-                    <div class="bg-slate-900 text-white px-5 py-3 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">Kompra Inside</span>
-                            <span class="font-medium text-sm">Внимание: Обнаружены риски</span>
-                        </div>
-                    </div>
-                    <div class="p-5 bg-white">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">ТОО "Строй Инвест Плюс"</h3>
-                                <p class="text-sm text-gray-500 mt-1 block">БИН: <span id="displayBin"></span></p>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-16 h-16 rounded-full border-4 border-red-500 flex items-center justify-center text-xl font-bold text-red-600 mb-1">
-                                    18
-                                </div>
-                                <span class="text-xs text-gray-500 font-medium">Risk Score</span>
-                            </div>
-                        </div>
-                        <div class="bg-red-50 text-red-700 p-3 rounded text-sm font-medium border border-red-200 mb-4">
-                            Действие CRM: Сделка заблокирована. Налоговая задолженность 12.5 млн KZT.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <span class="text-xs font-medium text-gray-500 bg-white px-2 py-1 rounded border">04 Июня, 14:20</span>
+            </li>
+        </ul>
     </div>
-
-    <!-- PAGE 2: CLIENTS (Placeholder) -->
-    <div id="content-clients" class="content-section p-8 flex-1 overflow-y-auto hidden">
-        <div class="max-w-3xl bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-            <h2 class="text-2xl font-bold text-gray-700 mb-2">База клиентов</h2>
-            <p class="text-gray-500">В рамках демо-версии мы показываем только процесс автоматического комплаенса в разделе "Сделки". Интеграция Kompra автоматически обновляет скоринг каждого клиента в этой базе каждую ночь.</p>
-        </div>
-    </div>
-
-    <!-- PAGE 3: ANALYTICS (Placeholder) -->
-    <div id="content-analytics" class="content-section p-8 flex-1 overflow-y-auto hidden">
-        <div class="max-w-3xl bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-            <h2 class="text-2xl font-bold text-gray-700 mb-2">Аналитика рисков</h2>
-            <p class="text-gray-500">Здесь руководитель отдела продаж и служба безопасности видят статистику заблокированных сделок благодаря интеграции Kompra.kz.</p>
-        </div>
-    </div>
+</div>
 </main>
-
-<script>
-    // 1. Sidebar Tab Switching Logic
-    const navItems = document.querySelectorAll('.nav-item');
-    const contentSections = document.querySelectorAll('.content-section');
-    const pageTitle = document.getElementById('page-title');
-
-    navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            // Reset all tabs
-            navItems.forEach(nav => {
-                nav.classList.remove('bg-slate-800', 'text-white', 'border-blue-500');
-                nav.classList.add('border-transparent');
-            });
-
-            // Set clicked tab to active
-            item.classList.add('bg-slate-800', 'text-white', 'border-blue-500');
-            item.classList.remove('border-transparent');
-
-            // Hide all content sections
-            contentSections.forEach(section => {
-                section.classList.add('hidden');
-                section.classList.remove('block');
-            });
-
-            // Show the targeted content section
-            const targetId = item.id.replace('tab-', 'content-');
-            document.getElementById(targetId).classList.remove('hidden');
-            document.getElementById(targetId).classList.add('block');
-
-            // Update Top Header Title
-            if(targetId === 'content-deals') pageTitle.innerText = 'Создание новой сделки';
-            if(targetId === 'content-clients') pageTitle.innerText = 'Управление клиентами';
-            if(targetId === 'content-analytics') pageTitle.innerText = 'Дашборд аналитики';
-        });
-    });
-
-    // 2. The Kompra Search Logic (Same as before)
-    document.getElementById('searchBtn').addEventListener('click', function() {
-        const binValue = document.getElementById('binInput').value;
-
-        if(!binValue || binValue.length < 10) {
-            alert('Пожалуйста, введите корректный БИН');
-            return;
-        }
-
-        document.getElementById('kompraWidget').classList.add('hidden');
-        document.getElementById('loaderState').classList.remove('hidden');
-        document.getElementById('searchBtn').disabled = true;
-        document.getElementById('displayBin').innerText = binValue;
-
-        setTimeout(() => {
-            document.getElementById('loaderState').classList.add('hidden');
-            document.getElementById('kompraWidget').classList.remove('hidden');
-            document.getElementById('searchBtn').disabled = false;
-        }, 1500);
-    });
-</script>
-</body>
-</html>
